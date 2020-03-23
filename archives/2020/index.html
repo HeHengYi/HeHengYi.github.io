@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     Hehy&#39;s blog
+    Archives: 2020 |  Hehy&#39;s blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -30,227 +30,52 @@
 <body>
   <div id="app">
     <main class="content">
-      
-<section class="cover">
-    
-      
-      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
-        target="_blank"><img width="149" height="149" src="/images/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover4.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">Hehy&#39;s blog</a></h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-<div id="main">
-  <section class="outer">
+      <section class="outer">
   <article class="articles">
     
     
+    <h1 class="page-type-title">2020</h1>
     
     
-    <article id="post-JVM(一)-内存结构" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
+  
+  
+  
+  
+  
+  
+  <div class="archives-wrap">
+    <div class="archive-year-wrap">
+      <a href="/archives/2020" class="archive-year">2020</a>
+    </div>
+    <div class="archives">
+      
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/JVM(一)-内存结构/" class="archive-article-date">
+  <time datetime="2020-03-23T09:32:29.000Z" itemprop="datePublished">03/23</time>
+</a>
        
 <h2 itemprop="name">
-  <a class="article-title" href="/JVM(一)-内存结构/"
+  <a class="archive-article-title" href="/JVM(一)-内存结构/"
     >JVM(一)-内存结构</a> 
 </h2>
  
 
     </header>
     
-
     
-    <div class="article-meta">
-      <a href="/JVM(一)-内存结构/" class="article-date">
-  <time datetime="2020-03-23T09:32:29.000Z" itemprop="datePublished">2020-03-23</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a> / <a class="article-category-link" href="/categories/java/基本功/">基本功</a>
   </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p><img src="../img/jvm/内存模型.png" alt="内存模型"></p>
-<h2 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1 程序计数器"></a>1 程序计数器</h2><ul>
-<li>作用：记住下一条jvm指令的执行地址</li>
-<li>通过寄存器实现（寄存器是CPU读取速度最快的一个单元）</li>
-<li>特点：<ul>
-<li>线程私有</li>
-<li>不会内存溢出</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-虚拟机栈"><a href="#2-虚拟机栈" class="headerlink" title="2 虚拟机栈"></a>2 虚拟机栈</h2><h3 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h3><p>Java Virtual Machine Stacks（Java虚拟机栈）</p>
-<ul>
-<li>每个线程运行需要的内存，称为虚拟机栈</li>
-<li>每个栈由多个栈帧(Frame)组成，栈帧为每个方法分配运行空间，运行完毕自动释放</li>
-<li>每个线程只有一个活动栈帧，对应正在执行的方法</li>
-</ul>
-<p>问题辨析：</p>
-<p>1.垃圾回收是否涉及栈内存</p>
-<p>不需要垃圾回收，方法执行完毕自动出栈释放内存</p>
-<p>2.栈内存分配越大越好吗？</p>
-<p>，值2越大内存占用越多，间接减少线程数量</p>
-<p>3.方法内的局部变量是否线程安全？</p>
-<ul>
-<li>如果方法内局部变量没有逃离方法的作用范围，它是线程安全的。</li>
-<li>如果是局部变量引用了对象，并逃离方法的作用方法，需要考虑线程安全问题</li>
-</ul>
-<h3 id="2-2-栈内存溢出"><a href="#2-2-栈内存溢出" class="headerlink" title="2.2 栈内存溢出"></a>2.2 栈内存溢出</h3><ul>
-<li>内存溢出报错：java.lang.StackOverflowError</li>
-<li>设置参数：-Xss1M</li>
-</ul>
-<p>栈帧太多导致（递归）</p>
-<p>栈帧太大导致（可能为变量过多，很少遇到）</p>
-<h3 id="2-3-线程运行诊断"><a href="#2-3-线程运行诊断" class="headerlink" title="2.3 线程运行诊断"></a>2.3 线程运行诊断</h3><p>案例1：cpu占用过多</p>
-<p>定位：</p>
-<ol>
-<li>用top定位哪个进程堆cpu的占用过高</li>
-<li>ps H -eo pid,tid,%cpu | grep 进程id（此处查看哪个线程占用）</li>
-<li>jstack 进程id（此处通过上一步的线程id转换为16进制，对比nid就可以知道哪行代码了）</li>
-</ol>
-<p>案例2：程序运行很长的时间没有结果</p>
-<p>定位：</p>
-<ol>
-<li>死锁排查可通过 top | grep java 查看重复出现的进程，可以定位</li>
-<li>jstack 进程id</li>
-</ol>
-<h2 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3 本地方法栈"></a>3 本地方法栈</h2><p>存放的是native方法（Object对象有native方法）</p>
-<h2 id="4-堆"><a href="#4-堆" class="headerlink" title="4 堆"></a>4 堆</h2><h3 id="4-1-定义"><a href="#4-1-定义" class="headerlink" title="4.1 定义"></a>4.1 定义</h3><p>通过new创建的对象都放在堆中</p>
-<p>特点：</p>
-<ul>
-<li><p>线程共享，有线程安全问题</p>
-</li>
-<li><p>有垃圾回收机制</p>
-</li>
-</ul>
-<h3 id="4-2-堆内存溢出"><a href="#4-2-堆内存溢出" class="headerlink" title="4.2 堆内存溢出"></a>4.2 堆内存溢出</h3><ul>
-<li>内存溢出报错：java.lang.OutOfMemoryError：Java heap space</li>
-<li>参数控制：-Xmx8m</li>
-</ul>
-<p>new 对象过多导致</p>
-<h3 id="4-3-堆内存检测工具"><a href="#4-3-堆内存检测工具" class="headerlink" title="4.3 堆内存检测工具"></a>4.3 堆内存检测工具</h3><p>1.先通过jps查看java进程信息</p>
-<p>2.然后通过jmap -heap %进程ID 查看内存快照信息，可观察Eden space的变化</p>
-<p>3.通过jconsole观察内存变化图</p>
-<p>4.通过jvisualvm工具察看变化图</p>
-<h2 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5 方法区"></a>5 方法区</h2><p><img src="../img/jvm//内存结构.png" alt="内存结构"></p>
-<h3 id="5-1-定义"><a href="#5-1-定义" class="headerlink" title="5.1 定义"></a>5.1 定义</h3><p>线程共享</p>
-<p>存储类的结构，包括字段、方法数据、方法代码、构造方法</p>
-<h3 id="5-2-方法区内存溢出"><a href="#5-2-方法区内存溢出" class="headerlink" title="5.2 方法区内存溢出"></a>5.2 方法区内存溢出</h3><p>1.8及以后（元空间实现）</p>
-<p>(java.lang.OutOfMemoryError:Metaspace)</p>
-<p>-XX:MaxMetaspaceSize=8m</p>
-<p>1.8以前（永久带实现）</p>
-<p>(java.lang.OutOfMemoryError:PermGen)</p>
-<p>-XX:MaxPermSize=8m</p>
-<p>spring与mybatis都是用了cglib，底层就是动态类加载，会使用非常多的方法区内存，所以有可能溢出</p>
-<h3 id="5-3-运行时常量池"><a href="#5-3-运行时常量池" class="headerlink" title="5.3 运行时常量池"></a>5.3 运行时常量池</h3><ul>
-<li>常量池，就是一张表，虚拟机指令根据这张常量表找到要执行的类名、方法名、参数类型、字面量等信息</li>
-<li>运行时常量池，常量池时 *.class文件中的，当该类被记载，它的常量池信息就会放入运行时常量池，并把里面的符号地址变为真实地址</li>
-</ul>
-<h3 id="5-4-StringTable"><a href="#5-4-StringTable" class="headerlink" title="5.4 StringTable"></a>5.4 StringTable</h3><ul>
-<li>常量池中的字符串仅是符号，第一次用时才变为对象</li>
-</ul>
-<ul>
-<li>利用串池的机制，避免重复创建字符串对象</li>
-</ul>
-<ul>
-<li>字符串变量拼接原理是stringbuilder（1.8）</li>
-</ul>
-<ul>
-<li>字符串常量拼接原理是编译器优化</li>
-</ul>
-<ul>
-<li>字符串加载也是延迟成为对象T</li>
-</ul>
-<ul>
-<li><p>可以使用intern方法， 主动将串池中还没有的对象放入串池</p>
-<ul>
-<li>1.6是将自身复制放入串池，1.8是将本身放入串池</li>
-</ul>
-</li>
-<li><p>可以被垃圾回收</p>
-</li>
-</ul>
-<h3 id="5-5-StringTbale-性能调优"><a href="#5-5-StringTbale-性能调优" class="headerlink" title="5.5 StringTbale 性能调优"></a>5.5 StringTbale 性能调优</h3><ol>
-<li>调整桶个数-XX:StringTableSize=200000</li>
-<li>考虑常量是否入池</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
 </article>
-    
-  </article>
+      
+      
+    </div>
+  </div>
+  
   
 
   
 </section>
-</div>
-
       <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
