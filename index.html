@@ -65,6 +65,87 @@
     
     
     
+    <article id="post-HashMap源码解析" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/HashMap源码解析/"
+    >HashMap源码解析</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/HashMap源码解析/" class="article-date">
+  <time datetime="2020-03-25T02:31:06.000Z" itemprop="datePublished">2020-03-25</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a> / <a class="article-category-link" href="/categories/java/源码分析/">源码分析</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <blockquote>
+<p>开发时，高频使用的对象，研究看看源码</p>
+</blockquote>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p><img src="../img/hashmap/hashmap结构.png"></p>
+<ul>
+<li>HashMap本地由其内部类<strong>Node</strong>对象组成的数组，通过hash算法获取对象的hash值，将对象存储于hash值对应的数组位置上。</li>
+<li>因此在这种模式下，对象hash值是有相同的情况，由于Node对象本身设计了next属性，因此可将重复hash的后加对象放入next属性，此时此处就变成了单向链表。</li>
+<li>随着HashMap存储的对象越来越多，内部对象碰撞的概率越大，造成的结果就是链表会越来越长，这样查询的效率就会降低，因此HashMap设置一个值，负载因子<strong><span style="color:red">DEFAULT_LOAD_FACTOR</span></strong>（默认为0.75）,当其对象个数大于数组大小*0.75时，HashMap就会进行扩容，扩容采用的位运算&lt;&lt;1，数组大小乘以两倍。</li>
+<li>随着数组的扩容，依然有可能多个对象hash值重复， 还是会造成查询效率降低的问题，因此<strong>jdk1.8</strong>以后，加入了红黑树的设计。当链表长度超过<strong><span style="color:red">TREEIFY_THRESHOLD</span></strong>（默认为8）时，就会将链表转换为红黑树。</li>
+</ul>
+<p>总结：</p>
+<p>​    HashMap是由 数组 + 链表 组成，jdk1.8以后是由 数组 + 链表 + 红黑树 组成。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashMap/">HashMap</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-JVM(一)-内存结构" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -125,7 +206,7 @@
 <p>1.垃圾回收是否涉及栈内存</p>
 <p>不需要垃圾回收，方法执行完毕自动出栈释放内存</p>
 <p>2.栈内存分配越大越好吗？</p>
-<p>，值2越大内存占用越多，间接减少线程数量</p>
+<p>不好，值越大内存占用越多，间接减少线程数量</p>
 <p>3.方法内的局部变量是否线程安全？</p>
 <ul>
 <li>如果方法内局部变量没有逃离方法的作用范围，它是线程安全的。</li>
