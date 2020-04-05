@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JVM(一)-垃圾回收前序</title>
+    <url>/JVM(%E4%BA%8C)-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%89%8D%E5%BA%8F/</url>
+    <content><![CDATA[<blockquote>
+<p>通过对内存结构的学习，已经明白了JVM运行时的内存结构，现在来看看垃圾处理，在此之前先做一下垃圾处理的准备工作。</p>
+</blockquote>
+<h2 id="1-引用类型"><a href="#1-引用类型" class="headerlink" title="1 引用类型"></a>1 引用类型</h2><ul>
+<li>强引用：一般创建的对象均是强引用，只要强引用还在，垃圾收集器永远不会回收掉该对象。</li>
+<li>软引用：不足时回收，充足时不回收。想实现软引用，则需要有一个单独的类来实现控制：<code>java.lang.ref.SoftReference</code>。</li>
+<li>弱引用：弱引用本质的含义指的是说只要一进行GC处理，那么所引用的对象将会被立刻回收。弱引用需要使用的是Map接口的子类：<code>java.util.WeakHashMap</code>。</li>
+<li>虚引用：虚引用主要用来跟踪对象被垃圾回收的活动。虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列<code>java.lang.ref.ReferenceQueue</code>联合使用。被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。</li>
+</ul>
+<h2 id="2-垃圾判定"><a href="#2-垃圾判定" class="headerlink" title="2 垃圾判定"></a>2 垃圾判定</h2><p>我们常常说的垃圾回收，那么垃圾是什么呢，简单的说垃圾就是不在被使用（引用）的对象，在程序中没有存在价值，所以要把这个对象回收掉。那么如何判断该对象是否是垃圾呢，这里介绍两种方法。</p>
+<h3 id="1-1-引用计数法"><a href="#1-1-引用计数法" class="headerlink" title="1.1 引用计数法"></a>1.1 引用计数法</h3><p>它的做法是为每个对象添加一个引用计数器，用来统计指向该对象的引用个数。一旦某个对象的引用计数器为0，则说明该对象已经死亡，便可以被回收了。</p>
+<p>很简单吧，但是这个方法有一个致命的弱点，循环引用不能清除。</p>
+<p>比如：有一个Student对象，该对象有一班级属性指向另一个Class对象，该Class对象又有成员属性指向Student对象，那么此时当没有其他对象引用他们时，他们的计数器均为1，此时明明没有其他对象使用他们了，但是他们却不能得到回收。这样就是引用计数法的最大弊端。</p>
+<h3 id="1-2-可达性分析"><a href="#1-2-可达性分析" class="headerlink" title="1.2 可达性分析"></a>1.2 可达性分析</h3><p>它的做法是通过一系列名为”GC Roots”的对象作为起始点，从这个被称为GC Roots的对象开始向下搜索，如果一个对象到GC Roots没有任何引用链相连时，则说明此对象不可用。也即给定一个集合的引用作为根出发，通过引用关系遍历对象图，能被遍历到的（可到达的）对象就被判定为存活，没有被遍历到的就自然被判定为死亡。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+        <category>基本功</category>
+      </categories>
+      <tags>
+        <tag>jvm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HashMap源码解析</title>
     <url>/HashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</url>
     <content><![CDATA[<blockquote>
