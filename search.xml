@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>JVM(一)-垃圾回收前序</title>
+    <title>JVM(二)-垃圾回收前序</title>
     <url>/JVM(%E4%BA%8C)-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%89%8D%E5%BA%8F/</url>
     <content><![CDATA[<blockquote>
 <p>通过对内存结构的学习，已经明白了JVM运行时的内存结构，现在来看看垃圾处理，在此之前先做一下垃圾处理的准备工作。</p>
